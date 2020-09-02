@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Student Profile {% endblock %} 
+
+{% block content %}
+<div class="container" style="
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 450px;
+	height: 775px;
+	text-align: center;
+	display:table-cell; 
+	vertical-align:middle;
+	margin-top: 0;
+	background-color: white;
+	color: black;
+	border: 1px solid white;
+	border-radius: 5px;
+	padding: 0px 50px;
+	box-shadow:
+		0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+		0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+		0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12);
+
+	display:flex;
+	justify-content:center;
+	align-items:center;
+">	
+	<div class="inner">
+		{% if user.student.picture %}
+            <img src={{ user.student.picture }} class="rounded-circle" style="margin-bottom:25px;"width="240">
+        {% else %}
+            <img src="https://cdn.onlinewebfonts.com/svg/img_568656.png" class="rounded-circle" style="margin-bottom:25px; "width="240">
+        {% endif %}
+		
+		<h1>Student Profile</h1>
+		<div style="margin-top: 20px; text-align: left">
+			<p><b>Username:</b>       {{ user }}</p>
+			<p><b>First Name:</b>       {{ user.first_name }}</p>
+			<p><b>Last Name:</b>       {{ user.last_name }}</p>
+			<p><b>Email:</b>       {{ user.email }}</p>
+			<p><b>Graduation Year:</b>       {{ user.student.student_year }}</p>
+			<p><b>Bio:</b>       {{ user.student.bio }}</p>
+			<div style="text-align:center;"><a href="edit" class="btn btn-secondary btn-sm">Edit Profile</a></div>
+			<div style="margin-top: 20px; text-align:center;"><a style="background-color: #4e54c8; text-decoration: none; color: white;" href="{% url 'login:logout' %}" class="btn btn-lg">Logout</a></div>
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Profile {% endblock %} 
+
+{% block content %}
+
+<div style="
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height: 100%;
+	margin-bottom: 50px">
+	<div class="container" style="
+		text-align: left;
+		font-weight: 500;
+		width: 450px;
+		background-color: white;
+		color: black;
+		border: 1px solid white;
+		border-radius: 5px;
+		padding: 50px 50px;
+		box-shadow:
+			0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+			0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+			0 12.5px 10px rgba(0, 0, 0, 0.06),
+			0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+			0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+			0 100px 80px rgba(0, 0, 0, 0.12)
+	">
+
+		<form method="post">
+			{% csrf_token %}
+			<h1>Edit Profile</h1>
+			<!-- {{ form.as_p }} -->
+			{{ form|crispy }}
+			<button type="submit" style="
+				height: 50px;
+				width: 100%;
+				background-color: #8f94fb;
+				border: 1px solid #8f94fb;
+				border-radius: 5px;
+				color: white;
+				cursor: pointer;
+				transition: 0.3s ease-in-out;
+				box-sizing : border-box;">
+			Submit
+			</button>
+		</form>
+	</div>
+</div>
+{% endblock %}

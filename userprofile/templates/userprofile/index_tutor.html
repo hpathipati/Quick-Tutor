@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Tutor Profile {% endblock %} 
+
+{% block content %}
+<div class="container" style="margin-bottom:50px">
+    <h1>Tutor Profile:</h1>
+    {% if user.tutor.picture %}
+        <img src="{{ user.tutor.picture }}" width="240"> 
+    {% endif %}
+    <p>Username: {{ user }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <a href="{% url 'userprofile:edit' %}" class="btn btn-outline-primary btn-sm">Edit Profile</a>
+</div>
+    <a href="{% url 'userprofile:index' %}" class="btn btn-danger btn-lg">Visit Student Profile</a>
+    <a href="{% url 'login:logout' %}" class="btn btn-danger btn-lg">Logout</a>
+{% endblock %}

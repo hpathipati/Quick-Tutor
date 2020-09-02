@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="container">
+{% include "study/request_object.html" with req=tutor_request only %}
+{% if user.is_authenticated %}
+    {% if user.student == tutor_request.student %}
+        {% if tutor_request.tutor == null %}
+			<i style="color: white">
+				A tutor hasn't volunteered to help yet! <br>
+				We'll notify you when one becomes avaliable
+			</i>
+        {% else %}
+            {% if tutor_request.tutor.picture %}
+                <img src="{{ tutor_request.tutor.picture }}" class="rounded-circle" style="margin-bottom:25px;"width="240"> 
+            {% endif %}
+            <p class="text-white">{{tutor_request.tutor}} has volunteered to tutor you!</p>
+            <p class="text-white"> Here's the contact info for {{ tutor_request.tutor }}: <a href="mailto:{{ tutor_request.tutor.user.email }}" class="text-white">{{ tutor_request.tutor.user.email }}</a> </p>
+
+            {% include "study/map.html" %}
+        {% endif %}
+    {% elif user.student == tutor_request.tutor %}
+        <p class="text-white"> Thanks for volunteering to tutor! </p>
+        <p class="text-white"> Here's the contact info for {{ tutor_request.student }}: <a href="mailto:{{ tutor_request.student.user.email }}" class="text-white">{{ tutor_request.student.user.email }}</a> </p>
+
+        {% include "study/map.html" %}
+
+    {% else %}
+    	<form class="claim-request" method="post" action="{% url 'study:open_request' tutor_request.pk  %}">
+        	{% csrf_token %}
+            <button type="submit" class="btn btn-light btn-lg"> Volunteer to Tutor {{ tutor_request.student }} </button>
+        </form>
+    {% endif %}
+{% else %}
+<p>Please login to see this page.</p>
+{% endif %}
+</div>
+{% endblock %}

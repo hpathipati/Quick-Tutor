@@ -1,0 +1,30 @@
+<div class="card mb-3" style="max-height: 202px; min-width:600px; margin:50px">
+    <div class="row no-gutters">
+        <div class="col-md-4">
+        {% if req.student.picture %}
+            <img class="rounded" src={{ req.student.picture }} style="height:200px; max-width:250px" alt="User Profile Pic">
+        {% else %}
+            <img src="https://cdn.onlinewebfonts.com/svg/img_568656.png" style="height:200px; max-width:250px">
+        {% endif %}
+        </div>
+        <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title text-primary">{{ req.course }}</h5>
+            <p class="card-text text-secondary">{{ req.description }}</p>
+            {% if request.user.student != req.student %}
+                {% if req.tutor %}
+                    <p class="class-text text-secondary"> Assigned Tutor: {{ req.tutor }}</p>
+                {% else %}
+                    <p class="class-text text-secondary"> No Tutor Assigned Yet </p>
+                {% endif %}
+            {% else %}
+                {% if tutor_view %}
+                    <p class="card-text text-secondary"> Your Request! </p>
+                {% endif %}
+            {% endif %}
+            <p class="card-text"><small class="text-muted">Created {{ req.pub_date }}</small></p>
+            <a href="{% url 'study:open_request' req.pk %}">View Details</a> <br/><br/>
+        </div>
+        </div>
+    </div>
+</div>

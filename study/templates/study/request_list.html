@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %} Recent Requests {% endblock %}
+
+{% block head %}
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block content %}	
+<div style="
+	height: auto;
+	color: white;
+	margin-bottom: 100px;
+">
+<h1 style="font-weight: 500;">Unassigned Tutor Requests</h1>
+
+{% if subject %}
+    <a class="btn btn-danger" href="{% url 'study:requests' %}">Remove {{subject}} Filter</a>
+{% else %}
+    <div class="dropdown">
+		<button style="background-color: #4e54c8; border: none;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Filter Courses
+		</button>
+		<div style="padding: 10px; text-align: left" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item" href="{% url 'study:requests' %}?subject=CS">CS</a>
+			<a class="dropdown-item" href="{% url 'study:requests' %}?subject=APMA">APMA</a>
+			<a class="dropdown-item" href="{% url 'study:requests' %}?subject=ECON">ECON</a>
+			<div style="margin-top: 10px;" class="form-group">
+				<input type="text" id="customFilter" placeholder="Enter other code">
+			</div>
+			<button style="width: 100%; background-color: #4e54c8; color: white;" type="submit" class="btn" onclick="filter()">Filter</button>
+		</div>
+    </div>
+{% endif %}
+{% if unassigned %}
+    <div class="d-flex flex-wrap justify-content-center">
+    {% for req in unassigned %}
+        {% include "study/request_object.html" with req=req tutor_view=True %}
+    {% endfor %}
+    </div>
+{% else %}
+	<div style="margin-top: 30px;">
+		<p><i>There are no unassigned tutor requests {% if subject %} for {{subject}} courses {% endif %} at this time</i></p>
+		<p><i>Please check back later</i></p>
+	</div>
+{% endif %}
+
+	<div style="margin-top: 100px">
+		<h1>Students You Tutor:</h1>
+		{% if yours %}
+			<div class="d-flex flex-wrap justify-content-center">
+			{% for req in yours %}
+				{% include "study/request_object.html" with req=req tutor_view=True %}
+			{% endfor %}
+			</div>
+		{% else %}
+			<div style="margin-top: 30px;"></div>
+				<p><i>You are not currently tutoring any students</i></p>
+				<p><i>Accept unassigned student requests to tutor more students</i></p>
+			</div>
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
+{% block script %}
+
+<script>
+function filter() {
+    window.location.href = "{% url 'study:requests' %}?subject=" + document.getElementById("customFilter").value;
+}
+</script>
+</body>
+{% endblock %}

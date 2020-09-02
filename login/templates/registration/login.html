@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+{% block content %}
+<head>    
+	<!-- Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'login/styles.css' %} " />
+	
+	<title>Sign Up</title>
+</head>
+<body>
+	{% if user.is_authenticated %}
+		<h1>Welcome {{ user.get_username }}</h1>
+		<a href="{% url 'login:logout' %}">Logout</a>
+	{% else %}
+		{% if form.errors %}
+			<p>Your username and password didn't match. Please try again.</p>
+		{% endif %} 
+		{% if next %} 
+			{% if user.is_authenticated %}
+				<p>
+					Your account doesn't have access to this page. To proceed, please login with
+					an account that has access.
+				</p>
+			{% else %}
+				<p>Please login to see this page.</p>
+			{% endif %} 
+		{% endif %}
+
+		<div class="login-container">
+			<div class="login-box">
+				<div class="login-inner">
+					<form class="login-form" method="post" action="{% url 'login:login' %}">
+						{% csrf_token %}
+						<b><h2>Login</h2></b>
+						<div class="form-group">
+							{% for field in form %}
+								<div class="input-group">
+									<input class="login-input" type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.html_name }}" /> 
+									{{ field.errors }}
+								</div>
+							{% endfor %}
+							
+							<div class="button-container">
+								<button type="submit" class="login-button">Login</button>
+							</div>
+							{% if next %}
+								<input type="hidden" name="next" value="{{ next }}" />
+							{% else %}
+								<input type="hidden" name="next" value="/study/" />
+							{% endif %}
+						</div>
+						
+						<div class="separator">Or login with</div>
+
+						<div class="google-login-container">
+							<a href="{% provider_login_url "google" %}">
+								<img id="google-login-button" src="{% static "sociallogin/btn_google_signin_light_normal_web@2x.png" %}" alt="Google Login">
+							</a>
+						</div>
+					</form>
+
+					<div class="create-account-container">Don't have an account? <a href="{% url 'login:signup' %}">Create one!</a></div>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</body>
+{% endblock %}

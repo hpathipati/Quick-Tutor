@@ -1,0 +1,41 @@
+{% block head %}
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css' rel='stylesheet' />
+{% endblock %}
+
+<h2 class="text-white" style="margin-top:50px">Suggested Meeting Locations</h1>
+<div id='map' style='width: 100%; height: 500px; margin-bottom:75px'></div>
+
+{% block script %}
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGFycmlzb25jbGFyayIsImEiOiJjazc4MHZ0cHkwM3U5M25wcGlraDZuZmphIn0.nFyAH-MneDOEhn3xNMSFYQ';
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v9',
+    center: [-78.5050, 38.0345],
+    zoom: 15,
+    interactive: false,
+    });
+
+var marker = new mapboxgl.Marker()
+    .setLngLat([-78.5078, 38.0330])
+    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(
+        'Clark Library'
+    ))
+    .addTo(map);
+
+var marker = new mapboxgl.Marker()
+    .setLngLat([-78.5061, 38.0364])
+    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(
+        'Clemons Library'
+    ))
+    .addTo(map);
+
+var marker = new mapboxgl.Marker()
+    .setLngLat([-78.5006, 38.0351])
+    .setPopup(new mapboxgl.Popup({ offset: 25 }).setText(
+        '1515 Student Center'
+    ))
+    .addTo(map);
+</script>
+{% endblock %}

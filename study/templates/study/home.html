@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Quick Tutor! {% endblock %} 
+{% block script %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+{% endblock%}
+
+{% block content %}
+	  	<div class="banner-container">
+			<div class="inner">
+				<h1>Welcome to Quick Tutor</h1>
+				<h3>We connect students with skilled tutors</h3>
+				<div class="banner-login">
+					{% if user.is_authenticated %}
+						<a id="sign-in-banner" href="{% url 'userprofile:index' %}">Profile</a>
+					{% else %}
+						<a id="sign-in-banner" href="{% url 'login:signup' %}">Sign Up!</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+  <!-- Highlights -->
+  	<div class="highlights-container">
+		<section class="wrapper">
+			<div class="inner">
+			<div class="highlights">
+				<section>
+					<a class="highlights-btn" href="{% url 'login:signup' %}">
+						<div class="information">
+							<header>
+							<div class="icon">
+								<img src="static/images/icon1.png" width="100" height="100" alt="">
+							</div>
+							<h3>Qualified Tutors</h3>
+							</header>
+							<div class="highlight-box-information"><p>Tutor your fellow students, or get your questions answered by peers!</p></div>
+						</div>
+					</a>
+				</section>
+				<section>
+					<a class="highlights-btn" href="{% url 'login:signup' %}">
+						<div class="information">
+							<header>
+							<div class="icon">
+								<img src="static/images/icon2.png" width="100" height="100" alt="">
+							</div>
+							<h3>Get Connected</h3>
+							</header>
+							<div class="highlight-box-information"><p>Students can connect with tutors for personalized, one-on-one tutoring!</p></div>
+						</div>
+					</a>
+				</section>
+				<section>
+					<a class="highlights-btn" href="{% url 'login:signup' %}">
+						<div class="information">
+							<header>
+							<div class="icon">
+								<img src="static/images/icon3.png" width="150" height="100" alt="">
+							</div>
+							<h3>Academic Variety</h3>
+							</header>
+							<div class="highlight-box-information"><p>Tutors on our website have mastered a variety of subjects.</p></div>
+						</div>
+					</a>
+				</section>
+			</div>
+			</div>
+		</section>
+	</div>
+
+<!-- Testimonials -->
+  <section class="testimonial-section">
+    <div class="inner">
+      <header class="special">
+        <h2>Hear what professors are saying...</h2>
+      </header>
+      <div class="testimonials">
+        <section>
+          <div class="information">
+            <blockquote>
+              <p>"This is fantastic! Thanks so much guys!"</p>
+            </blockquote>
+            <div class="author">
+              <div class="image">
+                <img class="img-fluid rounded-circle mb-2" src=https://engineering.virginia.edu/sites/default/files/styles/faculty_headshot/public/MarkSherriff_headshot.jpg alt="">
+              </div>
+              <p class="credit">- <strong>Prof. Mark Sherriff</strong>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="information">
+            <blockquote>
+              <p>"My students love it!"</p>
+            </blockquote>
+            <div class="author">
+              <div class="image">
+                <img class="img-fluid rounded-circle mb-2" src= https://engineering.virginia.edu/sites/default/files/styles/faculty_headshot/public/AaronBloomfield_headshot.jpg alt="">
+              </div>
+              <p class="credit">- <strong>Prof. Aaron Bloomfield</strong>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="information">
+            <blockquote>
+              <p>"Thanks so much for making these free resources available to us!"</p>
+            </blockquote>
+            <div class="author">
+              <div class="image">
+                <img class="img-fluid rounded-circle mb-3" src=https://engineering.virginia.edu/sites/default/files/styles/faculty_headshot/public/NadaBasit_headshot.jpg alt="">
+              </div>
+              <p class="credit">- <strong>Prof. Nada Basit</strong>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+{% endblock %}

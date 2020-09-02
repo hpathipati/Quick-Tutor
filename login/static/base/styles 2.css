@@ -1,0 +1,104 @@
+body, html {
+	height: 100%;
+	margin: 0;
+	font-family: 'Roboto', sans-serif !important;
+  }
+  
+  * {
+	box-sizing: border-box;
+  }
+  
+  .bg-image {
+	/* The image used */
+	/* background-image: url("https://res.cloudinary.com/dpcbzfiye/image/upload/w_1620,c_fill,dpr_auto,f_auto,q_auto,fl_progressive/v1546986775/fiz5zkzw5eehp0o7f8uf.jpg"); */
+	/* background: rgb(253,121,168);
+	background: linear-gradient(0deg, rgba(253,121,168,1) 4%, rgba(236,236,236,1) 100%); */
+	background: #4e54c8;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+	
+	/* Full height */
+	height: 100%; 
+	
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+  
+  /* Position text in the middle of the page/image */
+  .bg-text {
+	/* background-color: rgb(0,0,0); Fallback color */
+	/* background-color: rgba(0,0,0, 0.4); Black w/opacity/see-through */
+	color: white;
+	font-weight: bold;
+	font-size: 130%;
+	/* border: 3px solid #f1f1f1; */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+	display:table-cell; 
+	vertical-align:middle;
+  }
+  form {
+	display:table;
+	margin:auto;
+  }
+  .nav{
+	background:transparent;
+  }
+  .navbar{
+	  padding: 30px;
+  }
+  #logo{
+	  text-decoration: none;
+	  color: white;
+	  transition: 0.3s;
+  }
+
+  #logo:hover{
+	  font-size: 1.05em;
+  }
+
+  .nav-element{
+	  font-size: 20px;
+	  margin-left: 30px;
+	  text-decoration: none;
+	  color: white;
+	  display: block;
+	  float: left;
+	  width: 70px;
+	  height: 40px;
+	  padding: 5px;
+	  text-align: center;
+	  transition: 0.3s;
+  }
+
+  .nav-element:hover{
+	  text-decoration: none;
+	  color: #8f94fb;
+  }
+
+  #sign-in{
+	  border: 1px solid white;
+	  border-radius: 5px;
+	  transition: 0.3s;
+  }
+
+  #my-profile{
+	  width: 90px;
+	  border: 1px solid white;
+	  border-radius: 5px;
+	  transition: 0.3s;
+  }
+
+  #sign-in:hover{
+	  border-color: #8f94fb;
+	  color: #8f94fb;
+  }

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500,600");
+
+body {
+	padding: 10;
+	font-family: 'Roboto', sans-serif;
+}
+
+/* .content{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+	display:table-cell; 
+	vertical-align:middle;
+	margin-top: 0;
+} */
+
+.signup-container, .login-container{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	height: 100%;
+	min-height: inherit;
+}
+
+.signup-box, .login-box{
+	height: 600px;
+	width: 450px;
+	background-color: white;
+	color: black;
+	border: 1px solid white;
+	border-radius: 5px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	padding: 0px 50px;
+	box-shadow:
+		0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+		0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+		0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+		0 100px 80px rgba(0, 0, 0, 0.12)
+}
+
+.signup-box{
+	height: 700px;
+}
+
+.signup-inner{
+	width: 100%;
+}
+
+.signup-form{
+	display: block;
+}
+
+h2{
+	font-weight: 900;
+}
+
+.form-group{
+	margin-bottom: 40px;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+	-webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input:focus, textarea:focus{
+	outline: none;
+}
+
+.signup-input, .login-input{
+	padding: 10px;
+	width: 100%;
+	margin-top: 20px;
+	border: none;
+	background: none;
+	border-bottom: 2px solid #8f94fb;
+	transition: 0.3s;
+	/* border-radius: 5px; */
+}
+
+.signup-input:focus, .login-input:focus{
+	border-bottom: 3px solid #4e54c8;
+}
+
+.button-container{
+	margin-top: 20px;
+	height: 70px;
+	width: 100%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.signup-button, .login-button{
+	margin-top: 50px;
+	height: 60px;
+	width: 100%;
+	background-color: #8f94fb;
+	border: 1px solid #8f94fb;
+	border-radius: 5px;
+	color: white;
+	cursor: pointer;
+	transition: 0.3s ease-in-out;
+	box-sizing : border-box;
+	/* transition:  */
+}
+
+.signup-button:hover, .login-button:hover{
+	background-color: #4e54c8;
+}
+
+.signup-button:focus, .login-button:focus{
+	outline: none;
+}
+
+.separator{
+	border: none;
+	width: 80%;
+	padding: 10px 0px;
+	margin: 0 auto;
+	font-size: 14px;
+	color: lightgray;
+}
+
+.google-login-container{
+	width: 100%;
+	margin-top: 10px;
+}
+
+.create-account-container{
+	width: 100%;
+	margin-top: 50px;
+	font-size: 14px;
+	color: lightgray;
+}
+
+.create-account-container a{
+	font-size: 14px;
+	color: lightgray;
+	text-decoration: none;
+	text-decoration: underline;
+}
+
+#google-login-button{
+	width: 50%;
+}

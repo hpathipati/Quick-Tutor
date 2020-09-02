@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+<div style="
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 2;
+	width: 80%;
+	padding: 20px;
+	text-align: center;
+	display:table-cell; 
+	vertical-align:middle;
+	margin-top: 0;
+	color: white;
+">
+	<!-- <h1 style="display: block; margin-bottom: 20px;">Welcome {{ user.first_name }}!</h1> -->
+	<div class="container" style="background-color: white;
+		color: black;
+		border: 1px solid white;
+		border-radius: 5px;
+		padding: 0px 50px;
+		box-shadow:
+			0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+			0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+			0 12.5px 10px rgba(0, 0, 0, 0.06),
+			0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+			0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+			0 100px 80px rgba(0, 0, 0, 0.12);
+		width: 500px;
+		padding: 50px 0px;
+		">
+		<form action="/study/tutor-request/" method="post" id="course_form" data-subjects-url="{% url 'study:ajax_load_subjects' %}" data-courses-url="{% url 'study:ajax_load_courses' %}">
+			{% csrf_token %}
+			<h3>Request a Tutor</h3>
+			<div style="margin-top: 30px;">
+				<div style="margin-top: 20px; text-align: left;" class="d-flex justify-content-center"><b style="display: inline-block; margin-right: 100px;">School:</b> {{form.school}}</div>
+				<div style="margin-top: 20px; text-align: left;" class="d-flex justify-content-center"><b style="display: inline-block; padding-right: 100px;">Subject:</b> {{form.subject}}</div>
+				<div style="margin-top: 20px; text-align: left;" class="d-flex justify-content-center"><b style="display: inline-block; margin-right: 100px;">Course:</b> {{form.course}}</div>
+				<div style="margin-top: 20px; text-align: left;"><b style="display: inline-block; margin-right: 100px;">Description:</b><br> {{form.description}}</div>
+				<input type="submit" class="btn btn-lg" style="display: inline-block; margin-top: 20px; background-color: #4e54c8; color: white; width: 200px;" value="Submit">
+			</div>
+		</form>
+	</div>
+</div>
+
+
+{% else %}
+
+<p>Please login to see this page.</p>
+{% endif %}
+{% endblock %}
+
+{% block script %}
+<script>
+    $("#id_school").change(function () {
+        var url = $("#course_form").attr("data-subjects-url");  // get the url of the `load_cities` view
+        var school = $(this).find("option:selected").text();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+        url: url + "?school=" + school,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_subject").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+    });
+    $("#id_subject").change(function () {
+        var url = $("#course_form").attr("data-courses-url");  // get the url of the `load_cities` view
+        var subject = $(this).find("option:selected").text();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+        url: url + "?subject=" + subject,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_course").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+    });
+</script>
+
+{% comment %}
+Source: https://simpleisbetterthancomplex.com/tutorial/2018/01/29/how-to-implement-dependent-or-chained-dropdown-list-with-django.html
+{% endcomment %}
+
+{% endblock %}

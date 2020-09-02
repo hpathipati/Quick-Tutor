@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+	<head>    
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900;300;400;700&display=swap" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'login/styles.css' %} " />
+		<title>Sign Up</title>
+	</head>
+	<body>
+		<!-- <div class="container"> -->
+			<div class="signup-container">
+				<div class="signup-box">
+					<div class="signup-inner">
+						<form class="signup-form" method="post">
+							{% csrf_token %}
+							<h2>Sign up</h2>
+							<div class="form-group">
+								{% for field in form %}
+									<div class="input-group">
+										<input class="signup-input" type="{{ field.field.widget.input_type }}" id="{{ field.id_for_label }}" placeholder="{{ field.label }}" name="{{ field.html_name }}" /> 
+										{{ field.errors }}
+									</div>
+								{% endfor %}
+
+								<div class="button-container">
+									<button class="signup-button" type="submit">Sign up</button>
+								</div>
+							</div>
+						</form>
+
+						<div class="create-account-container">Already have an account? <a href="{% url 'login:login' %}">Login!</a></div>
+					</div>
+				</div>
+			</div>
+		<!-- </div> -->
+	</body>
+{% endblock %}

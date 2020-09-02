@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %} Study {% endblock %} 
+
+{% block content %}
+<div style="
+	color: white; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 100px;
+	min-height: inherit;
+	width: 100%;
+">
+<div>
+	<h1>Want a peer tutor?</h1>
+	<div style="margin-top: 20px">
+		<a style="background-color: #4e54c8; color: white;" href={% url "study:tutor_request" %} class="btn btn-lg"> Create a Tutor Request Now! </a>
+	</div>
+
+	<div style="margin-top:40px">
+		{% if student_requests %}
+			<h3>Your Open Requests:</h3>
+			<div class="d-flex flex-wrap justify-content-center">
+			{% for req in student_requests %}
+				{% include "study/request_object.html" with req=req only %}
+			{% endfor %}
+			</div>
+		{% else %}
+			<i>You have no open requests for help!</i>
+		{% endif %}
+	</div>
+</div>
+</div>
+
+
+
+{% endblock %}
