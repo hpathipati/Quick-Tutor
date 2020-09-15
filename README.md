@@ -1,6 +1,6 @@
 # [Quick Coders](https://project-103-quick-coders.herokuapp.com)
 https://project-103-quick-coders.herokuapp.com
-
+Made by Harshita Pathipat, Harrison Clark, Kelly Chen, and Pablo Weber in Spring 2020.
 ## Quick Start Guide
 1. Clone Repo 
 ```git clone https://github.com/uva-cs3240-s20/project-103-quick-coders.git```
